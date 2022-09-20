@@ -1,2 +1,2 @@
 # database-design
-CS3200 Work
+CS3200 - SQL, SQLite, PostgreSQL
