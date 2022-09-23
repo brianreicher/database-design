@@ -12,10 +12,11 @@ WHERE Country='Germany';
 -- 2b
 SELECT ProductName
 FROM Suppliers NATURAL JOIN Products
-WHERE Country='Germany' AND UnitsOnOrder>0;
+WHERE Country='Germany' AND UnitsOnOrder>0 AND UnitsInStock=0;
+-- WHERE Country='Germany' AND UnitsOnOrder>UnitsInStock;
 
 -- 3
-SELECT CompanyName
-FROM Suppliers NATURAL JOIN Categories
+SELECT distinct CompanyName
+FROM Categories NATURAL JOIN Products NATURAL JOIN Suppliers
 WHERE CategoryName='Confections';
 
