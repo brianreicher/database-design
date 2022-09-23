@@ -68,9 +68,5 @@ SELECT ProductName, CategoryName
 FROM Products, Categories
 WHERE Products.CategoryID = Categories.CategoryID;
 
-
-
-
-
-
-
+-- Single quotes for string literals ' ', double quotes for identifiers with spaces
+-- SELECT distinct for unique select values
