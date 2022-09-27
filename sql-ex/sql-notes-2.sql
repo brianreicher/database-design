@@ -59,7 +59,15 @@ FROM Categories c JOIN Products p ON c.CategoryID = P.CategoryID
 SELECT  EmployeeID, FirstName, LastName, COUNT(*) as NumOrders, MIN(OrderDate)
     as FirstOrder, MAX(OrderDate) as MostRecentOrder
 FROM Employees NATURAL JOIN Orders
-    GROUP BY EmployeeID;
+    GROUP BY EmployeeID, FirstName, LastName;
+
+-- HAVING clause
+-- used in conjunction with GROUP BY, set of boolean expressions evaluated for each group
+SELECT CompanyName
+FROM OrderDetails JOIN Orders O on
+    OrderDetails.OrderID = O.OrderID JOIN Customers C on O.CustomerID = C.CustomerID
+GROUP BY Region
+HAVING AVG(UnitPrice*Quantity) < SUM(UnitPrice*Quantity)/COUNT(*);
 
 
 
