@@ -51,9 +51,9 @@ SELECT CompanyName, AVG(UnitPrice) as "AvgPrice"
 FROM Products NATURAL JOIN Suppliers
     GROUP BY CompanyName;
 
-SELECT CategoryName, ProductName, min(UnitPrice) as MinPrice, MAX(UnitPrice) as MaxPrice,
+SELECT CategoryName, MIN(UnitPrice) as MinPrice, MAX(UnitPrice) as MaxPrice,
        AVG(UnitPrice) as AvgPrice
-FROM Categories NATURAL JOIN Products
+FROM Categories c JOIN Products p ON c.CategoryID = P.CategoryID
     GROUP BY CategoryName;
 
 SELECT  EmployeeID, FirstName, LastName, COUNT(*) as NumOrders, MIN(OrderDate)
