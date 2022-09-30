@@ -19,3 +19,21 @@ WHERE ProductID in (SELECT ProductID FROM OrderDetails
 SELECT emp.FirstName as EmployeeFirstName, emp.LastName as EmployeeLastName,
        mgr.FirstName as ManagerFirstName, mgr.LastName as ManagerLastName
 FROM Employees emp JOIN Employees mgr ON mgr.EmployeeID = emp.ReportsTo;
+
+
+
+
+
+SELECT SUM(UnitPrice*Quantity) as OrderTotal, OrderID
+FROM OrderDetails
+GROUP BY OrderID;
+
+-- Avg price per region
+SELECT Region, avg(OrderTotal) as AvgRegionPrice
+FROM Orders o JOIN (SELECT SUM(UnitPrice*Quantity) as OrderTotal, OrderID FROM OrderDetails GROUP BY OrderID) JOIN Customers c on o.CustomerID = c.CustomerID
+GROUP BY c.CompanyName, c.Region, o.OrderID
+ORDER BY Region;
+
+
+select CompanyName
+from (select CompanyName, Region, avg(P))
