@@ -9,10 +9,10 @@ FROM Products;
 
 SELECT cust.CompanyName
 FROM Customers cust JOIN Orders O on cust.CustomerID = O.CustomerID
-GROUP BY cust.CustomerID
+GROUP BY cust.CompanyName
 HAVING COUNT(DISTINCT ShipCountry)>=20
 ORDER BY CompanyName;
 
 SELECT ProductID, ProductName, SupplierID, UnitsInStock
 FROM Products
-ORDER BY SupplierID, ProductID ASC;
+ORDER BY SupplierID, ProductID;
