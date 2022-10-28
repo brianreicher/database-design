@@ -14,5 +14,9 @@ def get_student(idNum):
     return f'<h1> You asked for student with id: {idNum} </h1>'
 
 
+@app.route("/")
+def default_route():
+    return "<h1> Default Page </h1>"
+
 if __name__ == '__main__':
     app.run(debug=True, port=4000)
