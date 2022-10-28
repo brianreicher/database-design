@@ -9,5 +9,10 @@ def hello_world():
     return "<h1> Hello World </h1>"
 
 
+@app.route("/students/<idNum>")
+def get_student(idNum):
+    return f'<h1> You asked for student with id: {idNum} </h1>'
+
+
 if __name__ == '__main__':
     app.run(debug=True, port=4000)
