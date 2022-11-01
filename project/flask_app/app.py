@@ -32,11 +32,13 @@ def get_form() -> str:
             </form> 
            """
 
+
 @app.route("/form", methods=["POST"])
 def post_form():
     first = request.form['first']
     last = request.form['last']
     return f'<h1> Hello, {first} {last} </h1>'
 
+
 if __name__ == '__main__':
-    app.run(debug=True, port=4000)
+    app.run(debug=True, host='0.0.0.0', port=4000)

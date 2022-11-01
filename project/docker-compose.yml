@@ -6,7 +6,7 @@ services:
     my-api-service:
         # tells docker compose to use the Dockerfile 
         # in the_app/ folder
-        build: the_app/
+        build: flask_app/
         # map host port 9000 to container port 4000
         ports: 
             - 9000:4000
