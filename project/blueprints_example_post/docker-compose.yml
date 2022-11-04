@@ -8,5 +8,8 @@ services:
         # in the_app/ folder
         build: the_app/
         # map host port 9000 to container port 4000
+
+        volumes:
+            - ./the_app:/usr/src/app
         ports: 
             - 9000:4000
