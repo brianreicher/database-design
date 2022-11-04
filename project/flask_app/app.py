@@ -1,5 +1,6 @@
 from flask import Flask, request
-
+from managers_api.managers import managers_blueprint
+from customers_api.customers import customers_blueprint
 
 app  = Flask(__name__)
 
@@ -38,6 +39,10 @@ def post_form():
     first = request.form['first']
     last = request.form['last']
     return f'<h1> Hello, {first} {last} </h1>'
+
+
+app.register_blueprint(managers_blueprint, url_prefix='/mgr')
+app.register_blueprint(customers_blueprint, url_prefix='/cust')
 
 
 if __name__ == '__main__':
