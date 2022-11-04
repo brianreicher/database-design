@@ -13,3 +13,12 @@ services:
             - ./the_app:/usr/src/app
         ports: 
             - 9000:4000
+
+    db:
+        image: mysql:8
+
+        ports:
+            - 3309:3306
+        
+        environment:
+            - MYSQL_ROOT_PASSWORD=abc123
