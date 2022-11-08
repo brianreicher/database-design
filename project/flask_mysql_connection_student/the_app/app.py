@@ -1,8 +1,24 @@
 # import the Flask framework
 from flask import Flask, jsonify
+from flaskext.mysql import MySQL
+
 
 # create a flask object
 app = Flask(__name__)
+
+# add db config variables to the app object
+app.config['MYSQL_DATABASE_HOST'] = 'db'
+app.config['MYSQL_DATABASE_PORT'] = 3309
+app.config['MYSQL_DATABASE_USER'] = 'webapp'
+app.config['MYSQL_DATABASE_PASSWORD'] = 'abc123'
+app.config['MYSQL_DATABASE_DB'] = 'cool_db'
+
+
+# create the MySQL object and connect it to the 
+# Flask app object
+db_connection = MySQL()
+db_connection.init_app(app)
+
 
 # import the blueprint objects from their respective locations
 from customer_api.customers import customers_blueprint
@@ -20,6 +36,19 @@ app.register_blueprint(managers_blueprint, url_prefix='/mgr')
 @app.route("/")
 def hello_world():
     return f'<h1>Hello From the Flask-MySQL Connection Tutorial</h1>'
+
+
+@app.route('/db_test')
+def db_testing():
+   cur = db_connection.get_db().cursor()
+   cur.execute('select * from test_table')
+   row_headers = [x[0] for x in cur.description]
+   json_data = []
+   theData = cur.fetchall()
+   for row in theData:
+       json_data.append(dict(zip(row_headers, row)))
+   return jsonify(json_data)
+
 
 # If this file is being run directly, then run the application 
 # via the app object. 
