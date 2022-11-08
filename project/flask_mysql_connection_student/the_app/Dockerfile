@@ -8,6 +8,8 @@ FROM python:3.9-alpine
 # set the new folder we just created as the working directory
 WORKDIR /usr/src/app/
 
+RUN apk add gcc musl-dev python3-dev libffi-dev openssl-dev
+
 # copy everything from the current folder (the one where this 
 # Dockerfile lives) into the folder we created above. 
 COPY ./requirements.txt /usr/src/app/
