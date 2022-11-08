@@ -12,4 +12,5 @@ CREATE TABLE students (
     firstName varchar(50)
 );
 
-SHOW TABLES;
+SELECT *
+FROM students;
